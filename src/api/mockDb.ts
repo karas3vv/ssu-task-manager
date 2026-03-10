@@ -7,9 +7,9 @@ export const mockUser: User = {
 };
 
 export const mockCategories: Category[] = [
-  { id: 'cat-1', title: 'Study', color: '#3b82f6' },
-  { id: 'cat-2', title: 'Work', color: '#8b5cf6' },
-  { id: 'cat-3', title: 'Personal', color: '#10b981' },
+  { id: 'cat-1', title: 'Учеба', color: '#3b82f6' },
+  { id: 'cat-2', title: 'Работа', color: '#8b5cf6' },
+  { id: 'cat-3', title: 'Личные', color: '#10b981' },
 ];
 
 export const mockTasks: Task[] = [
