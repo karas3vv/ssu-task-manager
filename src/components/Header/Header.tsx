@@ -20,12 +20,12 @@ export default function Header() {
         {isAuth ? (
           <>
             <span className="user-pill">{user?.name ?? 'User'}</span>
-            <AppButton type="button" onClick={handleLogout}>Logout</AppButton>
+            <AppButton type="button" onClick={handleLogout}>Выйти</AppButton>
           </>
         ) : (
           <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <Link to="/login">Логин</Link>
+            <Link to="/register">Регистрация</Link>
           </>
         )}
       </nav>

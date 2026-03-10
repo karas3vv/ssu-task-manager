@@ -5,11 +5,11 @@ export default function ProfilePage() {
 
   return (
     <section>
-      <h1>Profile</h1>
+      <h1>Профиль</h1>
       <div className="panel profile-card">
-        <p><strong>Name:</strong> {user?.name ?? 'Vadim Student'}</p>
-        <p><strong>Email:</strong> {user?.email ?? 'student@example.com'}</p>
-        <p><strong>Role:</strong> Frontend developer</p>
+        <p><strong>Имя:</strong> {user?.name ?? 'Vadim Student'}</p>
+        <p><strong>Почта:</strong> {user?.email ?? 'student@example.com'}</p>
+        <p><strong>Роль:</strong> Frontend developer</p>
       </div>
     </section>
   );

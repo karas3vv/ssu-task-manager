@@ -24,9 +24,9 @@ export default function TaskCard({ task, onDelete, onPatchStatus }: TaskCardProp
         <span>Due: {formatDate(task.dueDate)}</span>
       </div>
       <div className="task-actions">
-        <Link to={`/tasks/${task.id}`} className="link-button">Details</Link>
-        <AppButton type="button" onClick={() => onPatchStatus(task.id)}>Next status</AppButton>
-        <AppButton type="button" onClick={() => onDelete(task.id)}>Delete</AppButton>
+        <Link to={`/tasks/${task.id}`} className="link-button">Детали</Link>
+        <AppButton type="button" onClick={() => onPatchStatus(task.id)}>Следующий статус</AppButton>
+        <AppButton type="button" onClick={() => onDelete(task.id)}>Удалить</AppButton>
       </div>
     </article>
   );

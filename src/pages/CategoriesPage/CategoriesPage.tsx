@@ -14,13 +14,13 @@ export default function CategoriesPage() {
 
   return (
     <section>
-      <h1>Categories</h1>
+      <h1>Категории</h1>
       <div className="stats-grid">
         {categories.map((category) => (
           <article key={category.id} className="panel">
             <div className="category-dot" style={{ backgroundColor: category.color }} />
             <h3>{category.title}</h3>
-            <p>Color: {category.color}</p>
+            <p>Цвет: {category.color}</p>
           </article>
         ))}
       </div>
