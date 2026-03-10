@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { CreateTaskPayload, Task, TaskPriority, TaskStatus } from '../../types';
 import AppButton from '../../ui/AppButton/AppButton';
 import AppInput from '../../ui/AppInput/AppInput';
@@ -6,15 +6,23 @@ import AppSelect from '../../ui/AppSelect/AppSelect';
 
 interface TaskFormProps {
   initialTask?: Task;
-  onSubmit: (values: CreateTaskPayload | (CreateTaskPayload & { id?: string })) => void;
+  onSubmit: (values: CreateTaskPayload & { id?: string }) => void;
 }
 
 export default function TaskForm({ initialTask, onSubmit }: TaskFormProps) {
-  const [title, setTitle] = useState(initialTask?.title ?? '');
-  const [description, setDescription] = useState(initialTask?.description ?? '');
-  const [status, setStatus] = useState<TaskStatus>(initialTask?.status ?? 'todo');
-  const [priority, setPriority] = useState<TaskPriority>(initialTask?.priority ?? 'medium');
-  const [dueDate, setDueDate] = useState(initialTask?.dueDate ?? '');
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [status, setStatus] = useState<TaskStatus>('todo');
+  const [priority, setPriority] = useState<TaskPriority>('medium');
+  const [dueDate, setDueDate] = useState('');
+
+  useEffect(() => {
+    setTitle(initialTask?.title ?? '');
+    setDescription(initialTask?.description ?? '');
+    setStatus(initialTask?.status ?? 'todo');
+    setPriority(initialTask?.priority ?? 'medium');
+    setDueDate(initialTask?.dueDate ?? '');
+  }, [initialTask]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -27,35 +35,43 @@ export default function TaskForm({ initialTask, onSubmit }: TaskFormProps) {
       dueDate: dueDate || null,
       categoryId: null,
     });
+
+    if (!initialTask) {
+      setTitle('');
+      setDescription('');
+      setStatus('todo');
+      setPriority('medium');
+      setDueDate('');
+    }
   };
 
   return (
     <form className="panel task-form" onSubmit={handleSubmit}>
-      <h3>{initialTask ? 'Edit task' : 'Create task'}</h3>
-      <AppInput label="Title" value={title} onChange={(event) => setTitle(event.target.value)} required />
-      <AppInput label="Description" value={description} onChange={(event) => setDescription(event.target.value)} required />
+      <h3>{initialTask ? 'Редактирование задачи' : 'Создание задачи'}</h3>
+      <AppInput label="Название" value={title} onChange={(event) => setTitle(event.target.value)} required />
+      <AppInput label="Описание" value={description} onChange={(event) => setDescription(event.target.value)} required />
       <AppSelect
-        label="Status"
+        label="Статус"
         value={status}
         onChange={(event) => setStatus(event.target.value as TaskStatus)}
         options={[
-          { label: 'To do', value: 'todo' },
-          { label: 'In progress', value: 'in_progress' },
-          { label: 'Done', value: 'done' },
+          { label: 'К выполнению', value: 'todo' },
+          { label: 'В процессе', value: 'in_progress' },
+          { label: 'Выполнено', value: 'done' },
         ]}
       />
       <AppSelect
-        label="Priority"
+        label="Приоритет"
         value={priority}
         onChange={(event) => setPriority(event.target.value as TaskPriority)}
         options={[
-          { label: 'Low', value: 'low' },
-          { label: 'Medium', value: 'medium' },
-          { label: 'High', value: 'high' },
+          { label: 'Низкий', value: 'low' },
+          { label: 'Средний', value: 'medium' },
+          { label: 'Высокий', value: 'high' },
         ]}
       />
-      <AppInput label="Due date" type="date" value={dueDate} onChange={(event) => setDueDate(event.target.value)} />
-      <AppButton type="submit">Save task</AppButton>
+      <AppInput label="Срок выполнения" type="date" value={dueDate} onChange={(event) => setDueDate(event.target.value)} />
+      <AppButton type="submit">{initialTask ? 'Сохранить изменения' : 'Сохранить задачу'}</AppButton>
     </form>
   );
 }

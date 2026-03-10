@@ -9,14 +9,14 @@ export const mockUser: User = {
 export const mockCategories: Category[] = [
   { id: 'cat-1', title: 'Учеба', color: '#3b82f6' },
   { id: 'cat-2', title: 'Работа', color: '#8b5cf6' },
-  { id: 'cat-3', title: 'Личные', color: '#10b981' },
+  { id: 'cat-3', title: 'Личное', color: '#10b981' },
 ];
 
 export const mockTasks: Task[] = [
   {
     id: 'task-1',
-    title: 'Prepare React architecture',
-    description: 'Create folder structure, router and redux store.',
+    title: 'Подготовить архитектуру React',
+    description: 'Собрать структуру папок, роутер и Redux Store.',
     status: 'in_progress',
     priority: 'high',
     dueDate: '2026-03-20',
@@ -27,8 +27,8 @@ export const mockTasks: Task[] = [
   },
   {
     id: 'task-2',
-    title: 'Implement task CRUD',
-    description: 'Add create, update, patch status and delete actions.',
+    title: 'Реализовать CRUD для задач',
+    description: 'Добавить создание, редактирование, смену статуса и удаление.',
     status: 'todo',
     priority: 'medium',
     dueDate: '2026-03-24',
@@ -39,8 +39,8 @@ export const mockTasks: Task[] = [
   },
   {
     id: 'task-3',
-    title: 'Prepare analytics page',
-    description: 'Count tasks by statuses and priorities.',
+    title: 'Подготовить раздел аналитики',
+    description: 'Подсчитать задачи по статусам и приоритетам.',
     status: 'done',
     priority: 'low',
     dueDate: null,

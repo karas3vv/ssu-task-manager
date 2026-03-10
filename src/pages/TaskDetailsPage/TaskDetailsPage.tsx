@@ -20,7 +20,7 @@ export default function TaskDetailsPage() {
     };
   }, [dispatch, id]);
 
-  const handleSubmit = async (values: CreateTaskPayload | (CreateTaskPayload & { id?: string })) => {
+  const handleSubmit = async (values: CreateTaskPayload & { id?: string }) => {
     if (!id) {
       return;
     }

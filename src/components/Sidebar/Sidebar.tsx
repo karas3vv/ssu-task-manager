@@ -1,20 +1,29 @@
-import { NavLink } from 'react-router-dom';
-import { useAppSelector } from '../../app/hooks';
+interface SidebarProps {
+  activeSection: string;
+  onChange: (section: string) => void;
+}
 
-export default function Sidebar() {
-  const isAuth = useAppSelector((state) => state.user.isAuth);
+const items = [
+  { key: 'overview', label: 'Обзор' },
+  { key: 'tasks', label: 'Задачи' },
+  { key: 'analytics', label: 'Аналитика' },
+  { key: 'categories', label: 'Категории' },
+  { key: 'profile', label: 'Профиль' },
+];
 
-  if (!isAuth) {
-    return null;
-  }
-
+export default function Sidebar({ activeSection, onChange }: SidebarProps) {
   return (
     <aside className="sidebar">
-      <NavLink to="/dashboard">Dashboard</NavLink>
-      <NavLink to="/tasks">Tasks</NavLink>
-      <NavLink to="/analytics">Analytics</NavLink>
-      <NavLink to="/categories">Categories</NavLink>
-      <NavLink to="/profile">Profile</NavLink>
+      {items.map((item) => (
+        <button
+          key={item.key}
+          type="button"
+          className={`sidebar-link ${activeSection === item.key ? 'active' : ''}`}
+          onClick={() => onChange(item.key)}
+        >
+          {item.label}
+        </button>
+      ))}
     </aside>
   );
 }

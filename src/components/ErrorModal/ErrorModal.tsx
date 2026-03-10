@@ -13,9 +13,9 @@ export default function ErrorModal() {
   return (
     <div className="modal-backdrop">
       <div className="modal">
-        <h3>Server error</h3>
+        <h3>Ошибка сервера</h3>
         <p>{errorMessage}</p>
-        <AppButton type="button" onClick={() => dispatch(closeErrorModal())}>Close</AppButton>
+        <AppButton type="button" onClick={() => dispatch(closeErrorModal())}>Закрыть</AppButton>
       </div>
     </div>
   );

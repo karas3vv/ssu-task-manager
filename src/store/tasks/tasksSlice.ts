@@ -24,7 +24,7 @@ export const fetchTasks = createAsyncThunk(
       dispatch(startLoading());
       return await tasksApi.getTasks();
     } catch (error) {
-      dispatch(openErrorModal('Could not load tasks'));
+      dispatch(openErrorModal('Не удалось загрузить задачи'));
       return rejectWithValue(error);
     } finally {
       dispatch(stopLoading());
@@ -39,7 +39,7 @@ export const fetchTaskById = createAsyncThunk(
       dispatch(startLoading());
       return await tasksApi.getTaskById(id);
     } catch (error) {
-      dispatch(openErrorModal('Could not load task details'));
+      dispatch(openErrorModal('Не удалось загрузить данные задачи'));
       return rejectWithValue(error);
     } finally {
       dispatch(stopLoading());
@@ -54,7 +54,7 @@ export const createTaskAsync = createAsyncThunk(
       dispatch(startLoading());
       return await tasksApi.createTask(payload);
     } catch (error) {
-      dispatch(openErrorModal('Could not create task'));
+      dispatch(openErrorModal('Не удалось создать задачу'));
       return rejectWithValue(error);
     } finally {
       dispatch(stopLoading());
@@ -69,7 +69,7 @@ export const updateTaskAsync = createAsyncThunk(
       dispatch(startLoading());
       return await tasksApi.updateTask(payload);
     } catch (error) {
-      dispatch(openErrorModal('Could not update task'));
+      dispatch(openErrorModal('Не удалось обновить задачу'));
       return rejectWithValue(error);
     } finally {
       dispatch(stopLoading());
@@ -84,7 +84,7 @@ export const patchTaskStatusAsync = createAsyncThunk(
       dispatch(startLoading());
       return await tasksApi.patchTaskStatus(id, status);
     } catch (error) {
-      dispatch(openErrorModal('Could not change task status'));
+      dispatch(openErrorModal('Не удалось изменить статус задачи'));
       return rejectWithValue(error);
     } finally {
       dispatch(stopLoading());
@@ -99,7 +99,7 @@ export const deleteTaskAsync = createAsyncThunk(
       dispatch(startLoading());
       return await tasksApi.deleteTask(id);
     } catch (error) {
-      dispatch(openErrorModal('Could not delete task'));
+      dispatch(openErrorModal('Не удалось удалить задачу'));
       return rejectWithValue(error);
     } finally {
       dispatch(stopLoading());

@@ -283,3 +283,52 @@ section h1 {
     position: static;
   }
 }
+
+
+.main-content--full {
+  padding: 32px;
+}
+
+.dashboard-shell {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 20px;
+}
+
+.dashboard-content {
+  min-width: 0;
+}
+
+.sidebar-link {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+.sidebar-link.active {
+  background: #2563eb;
+}
+
+.overview-panel {
+  margin-top: 20px;
+}
+
+.overview-panel ul {
+  margin: 12px 0 0;
+  padding-left: 20px;
+}
+
+.task-form-actions {
+  margin-top: 12px;
+}
+
+@media (max-width: 980px) {
+  .dashboard-shell {
+    grid-template-columns: 1fr;
+  }
+}

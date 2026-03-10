@@ -15,12 +15,13 @@ export default function AnalyticsPage() {
 
   return (
     <section>
-      <h1>Analytics</h1>
+      <h1>Аналитика</h1>
+      <p className="page-description">Сводка по статусам и приоритетам задач.</p>
       <div className="stats-grid">
-        <div className="panel"><h3>To do</h3><p>{stats.todo}</p></div>
-        <div className="panel"><h3>In progress</h3><p>{stats.inProgress}</p></div>
-        <div className="panel"><h3>Done</h3><p>{stats.done}</p></div>
-        <div className="panel"><h3>High priority</h3><p>{stats.highPriority}</p></div>
+        <div className="panel"><h3>К выполнению</h3><p>{stats.todo}</p></div>
+        <div className="panel"><h3>В процессе</h3><p>{stats.inProgress}</p></div>
+        <div className="panel"><h3>Выполнено</h3><p>{stats.done}</p></div>
+        <div className="panel"><h3>Высокий приоритет</h3><p>{stats.highPriority}</p></div>
       </div>
     </section>
   );

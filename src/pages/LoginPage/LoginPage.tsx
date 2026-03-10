@@ -27,10 +27,10 @@ export default function LoginPage() {
     <div className="auth-page">
       <div className="auth-container">
         <form className="auth-card" onSubmit={handleSubmit}>
-          <h1 className="auth-title">Login</h1>
+          <h1 className="auth-title">Вход</h1>
 
           <AppInput
-            label="Email"
+            label="Электронная почта"
             type="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
@@ -38,7 +38,7 @@ export default function LoginPage() {
           />
 
           <AppInput
-            label="Password"
+            label="Пароль"
             type="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
@@ -46,11 +46,11 @@ export default function LoginPage() {
           />
 
           <AppButton type="submit" fullWidth>
-            Login
+            Войти
           </AppButton>
 
           <p className="auth-footer">
-            New here? <Link to="/register">Create an account</Link>
+            Еще нет аккаунта? <Link to="/register">Зарегистрироваться</Link>
           </p>
         </form>
       </div>

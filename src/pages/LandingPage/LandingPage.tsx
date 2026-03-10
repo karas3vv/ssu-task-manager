@@ -7,21 +7,20 @@ export default function LandingPage() {
       <div className="container">
         <div className="landing__grid">
           <div className="landing__content">
-            
-            <h1 className="landing__title">Task Manager</h1>
+            <h1 className="landing__title">Менеджер задач</h1>
 
             <p className="landing__text">
-              Multi-page task manager with protected routes, Redux Toolkit store,
-              axios layer and CRUD operations.
+              Одностраничное приложение для управления задачами с авторизацией,
+              Redux Toolkit, CRUD-операциями и русскоязычным интерфейсом.
             </p>
 
             <div className="landing__actions">
               <Link to="/login" className="landing__button landing__button--primary">
-                Sign in
+                Войти
               </Link>
 
               <Link to="/register" className="landing__button landing__button--secondary">
-                Create account
+                Создать аккаунт
               </Link>
             </div>
           </div>

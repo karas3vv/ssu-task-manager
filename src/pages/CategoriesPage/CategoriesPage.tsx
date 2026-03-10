@@ -1,20 +1,12 @@
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { fetchCategories } from '../../store/categories/categoriesSlice';
+import { useAppSelector } from '../../app/hooks';
 
 export default function CategoriesPage() {
-  const dispatch = useAppDispatch();
   const categories = useAppSelector((state) => state.categories.categories);
-
-  useEffect(() => {
-    if (!categories.length) {
-      void dispatch(fetchCategories());
-    }
-  }, [categories.length, dispatch]);
 
   return (
     <section>
       <h1>Категории</h1>
+      <p className="page-description">Список доступных категорий задач.</p>
       <div className="stats-grid">
         {categories.map((category) => (
           <article key={category.id} className="panel">

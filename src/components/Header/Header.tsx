@@ -15,16 +15,16 @@ export default function Header() {
 
   return (
     <header className="header">
-      <Link to="/" className="brand">Task Manager</Link>
+      <Link to="/" className="brand">Менеджер задач</Link>
       <nav className="header-nav">
         {isAuth ? (
           <>
-            <span className="user-pill">{user?.name ?? 'User'}</span>
+            <span className="user-pill">{user?.name ?? 'Пользователь'}</span>
             <AppButton type="button" onClick={handleLogout}>Выйти</AppButton>
           </>
         ) : (
           <>
-            <Link to="/login">Логин</Link>
+            <Link to="/login">Вход</Link>
             <Link to="/register">Регистрация</Link>
           </>
         )}

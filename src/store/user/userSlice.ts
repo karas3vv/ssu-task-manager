@@ -25,7 +25,7 @@ export const loginUser = createAsyncThunk(
       tokenStorage.setToken(response.token);
       return response;
     } catch (error) {
-      dispatch(openErrorModal('Login failed'));
+      dispatch(openErrorModal('Не удалось выполнить вход'));
       return rejectWithValue(error);
     } finally {
       dispatch(stopLoading());
@@ -42,7 +42,7 @@ export const registerUser = createAsyncThunk(
       tokenStorage.setToken(response.token);
       return response;
     } catch (error) {
-      dispatch(openErrorModal('Registration failed'));
+      dispatch(openErrorModal('Не удалось выполнить регистрацию'));
       return rejectWithValue(error);
     } finally {
       dispatch(stopLoading());

@@ -5,8 +5,8 @@ export default function NotFoundPage() {
     <section className="centered-page">
       <div className="panel auth-form">
         <h1>404</h1>
-        <p>Page not found.</p>
-        <Link to="/" className="link-button">Back to home</Link>
+        <p>Страница не найдена.</p>
+        <Link to="/" className="link-button">На главную</Link>
       </div>
     </section>
   );

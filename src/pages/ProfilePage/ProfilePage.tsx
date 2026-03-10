@@ -7,9 +7,9 @@ export default function ProfilePage() {
     <section>
       <h1>Профиль</h1>
       <div className="panel profile-card">
-        <p><strong>Имя:</strong> {user?.name ?? 'Vadim Student'}</p>
+        <p><strong>Имя:</strong> {user?.name ?? 'Вадим Студент'}</p>
         <p><strong>Почта:</strong> {user?.email ?? 'student@example.com'}</p>
-        <p><strong>Роль:</strong> Frontend developer</p>
+        <p><strong>Роль:</strong> Разработчик интерфейсов</p>
       </div>
     </section>
   );
