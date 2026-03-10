@@ -1,6 +1,6 @@
 # Task Manager
 
-Проект React + TypeScript проект под требования из задания.
+Проект React + TypeScript.
 
 ## Что внутри
 
