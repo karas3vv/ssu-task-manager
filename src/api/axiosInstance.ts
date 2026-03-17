@@ -1,6 +1,15 @@
 import axios from 'axios';
+import { tokenStorage } from '../utils/localStorage';
 
 export const axiosInstance = axios.create({
-  baseURL: 'https://example.com/api',
+  baseURL: import.meta.env.VITE_API_URL ?? 'http://127.0.0.1:8000/api',
   timeout: 5000,
+});
+
+axiosInstance.interceptors.request.use((config) => {
+  const token = tokenStorage.getToken();
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });

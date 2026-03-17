@@ -1,13 +1,9 @@
 import type { Category } from '../types';
-import { mockCategories } from './mockDb';
-
-const delay = async (): Promise<void> => {
-  await new Promise((resolve) => setTimeout(resolve, 200));
-};
+import { axiosInstance } from './axiosInstance';
 
 export const categoriesApi = {
   getCategories: async (): Promise<Category[]> => {
-    await delay();
-    return [...mockCategories];
+    const { data } = await axiosInstance.get<Category[]>('/categories');
+    return data;
   },
 };

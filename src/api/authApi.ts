@@ -1,36 +1,22 @@
 import type { LoginPayload, RegisterPayload, User } from '../types';
-import { mockUser } from './mockDb';
+import { axiosInstance } from './axiosInstance';
 
 interface AuthResponse {
   token: string;
   user: User;
 }
 
-const delay = async (): Promise<void> => {
-  await new Promise((resolve) => setTimeout(resolve, 350));
-};
-
 export const authApi = {
-  login: async (_payload: LoginPayload): Promise<AuthResponse> => {
-    await delay();
-    return {
-      token: 'fake-jwt-token',
-      user: mockUser,
-    };
+  login: async (payload: LoginPayload): Promise<AuthResponse> => {
+    const { data } = await axiosInstance.post<AuthResponse>('/auth/login', payload);
+    return data;
   },
   register: async (payload: RegisterPayload): Promise<AuthResponse> => {
-    await delay();
-    return {
-      token: 'fake-jwt-token',
-      user: {
-        ...mockUser,
-        name: payload.name,
-        email: payload.email,
-      },
-    };
+    const { data } = await axiosInstance.post<AuthResponse>('/auth/register', payload);
+    return data;
   },
   getProfile: async (): Promise<User> => {
-    await delay();
-    return mockUser;
+    const { data } = await axiosInstance.get<User>('/auth/me');
+    return data;
   },
 };

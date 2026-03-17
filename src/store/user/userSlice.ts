@@ -16,6 +16,22 @@ const initialState: UserState = {
   isAuth: Boolean(tokenStorage.getToken()),
 };
 
+export const fetchProfile = createAsyncThunk(
+  'user/fetchProfile',
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      dispatch(startLoading());
+      return await authApi.getProfile();
+    } catch (error) {
+      tokenStorage.clearToken();
+      dispatch(openErrorModal('Не удалось загрузить профиль'));
+      return rejectWithValue(error);
+    } finally {
+      dispatch(stopLoading());
+    }
+  },
+);
+
 export const loginUser = createAsyncThunk(
   'user/loginUser',
   async (payload: LoginPayload, { dispatch, rejectWithValue }) => {
@@ -77,6 +93,15 @@ const userSlice = createSlice({
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isAuth = true;
+      })
+      .addCase(fetchProfile.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isAuth = true;
+      })
+      .addCase(fetchProfile.rejected, (state) => {
+        state.user = null;
+        state.token = null;
+        state.isAuth = false;
       });
   },
 });

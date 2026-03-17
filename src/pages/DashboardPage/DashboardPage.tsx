@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { fetchCategories } from '../../store/categories/categoriesSlice';
+import { fetchProfile } from '../../store/user/userSlice';
 import { fetchTasks } from '../../store/tasks/tasksSlice';
 import AnalyticsPage from '../AnalyticsPage/AnalyticsPage';
 import CategoriesPage from '../CategoriesPage/CategoriesPage';
@@ -18,13 +19,16 @@ export default function DashboardPage() {
   const user = useAppSelector((state) => state.user.user);
 
   useEffect(() => {
+    if (!user) {
+      void dispatch(fetchProfile());
+    }
     if (!tasks.length) {
       void dispatch(fetchTasks());
     }
     if (!categories.length) {
       void dispatch(fetchCategories());
     }
-  }, [categories.length, dispatch, tasks.length]);
+  }, [categories.length, dispatch, tasks.length, user]);
 
   const stats = useMemo(() => {
     const doneCount = tasks.filter((task) => task.status === 'done').length;
