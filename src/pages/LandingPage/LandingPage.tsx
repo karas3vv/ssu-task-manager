@@ -10,8 +10,7 @@ export default function LandingPage() {
             <h1 className="landing__title">Менеджер задач</h1>
 
             <p className="landing__text">
-              Одностраничное приложение для управления задачами с авторизацией,
-              Redux Toolkit, CRUD-операциями и русскоязычным интерфейсом.
+              Приложение для управления задачами
             </p>
 
             <div className="landing__actions">
