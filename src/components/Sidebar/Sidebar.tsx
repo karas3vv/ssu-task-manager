@@ -1,28 +1,25 @@
-interface SidebarProps {
-  activeSection: string;
-  onChange: (section: string) => void;
-}
+import { NavLink } from 'react-router-dom';
 
 const items = [
-  { key: 'overview', label: 'Обзор' },
-  { key: 'tasks', label: 'Задачи' },
-  { key: 'analytics', label: 'Аналитика' },
-  { key: 'categories', label: 'Категории' },
-  { key: 'profile', label: 'Профиль' },
+  { to: '/dashboard', label: 'Обзор', end: true },
+  { to: '/tasks', label: 'Задачи' },
+  { to: '/analytics', label: 'Аналитика' },
+  { to: '/categories', label: 'Категории' },
+  { to: '/profile', label: 'Профиль' },
 ];
 
-export default function Sidebar({ activeSection, onChange }: SidebarProps) {
+export default function Sidebar() {
   return (
     <aside className="sidebar">
       {items.map((item) => (
-        <button
-          key={item.key}
-          type="button"
-          className={`sidebar-link ${activeSection === item.key ? 'active' : ''}`}
-          onClick={() => onChange(item.key)}
+        <NavLink
+          key={item.to}
+          to={item.to}
+          end={item.end}
+          className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
         >
           {item.label}
-        </button>
+        </NavLink>
       ))}
     </aside>
   );

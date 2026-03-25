@@ -3,17 +3,20 @@ import { authApi } from '../../api/authApi';
 import { openErrorModal, startLoading, stopLoading } from '../settings/settingsSlice';
 import type { LoginPayload, RegisterPayload, User } from '../../types';
 import { tokenStorage } from '../../utils/localStorage';
+import type { RootState } from '../../app/store';
 
 interface UserState {
   user: User | null;
   token: string | null;
   isAuth: boolean;
+  profileStatus: 'idle' | 'loading' | 'succeeded' | 'failed';
 }
 
 const initialState: UserState = {
   user: null,
   token: tokenStorage.getToken(),
   isAuth: Boolean(tokenStorage.getToken()),
+  profileStatus: 'idle',
 };
 
 export const fetchProfile = createAsyncThunk(
@@ -29,6 +32,12 @@ export const fetchProfile = createAsyncThunk(
     } finally {
       dispatch(stopLoading());
     }
+  },
+  {
+    condition: (_, { getState }) => {
+      const { user } = getState() as RootState;
+      return Boolean(user.token) && user.profileStatus !== 'loading' && !user.user;
+    },
   },
 );
 
@@ -79,29 +88,37 @@ const userSlice = createSlice({
       state.user = null;
       state.token = null;
       state.isAuth = false;
+      state.profileStatus = 'idle';
       tokenStorage.clearToken();
     },
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchProfile.pending, (state) => {
+        state.profileStatus = 'loading';
+      })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isAuth = true;
+        state.profileStatus = 'succeeded';
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isAuth = true;
+        state.profileStatus = 'succeeded';
       })
       .addCase(fetchProfile.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isAuth = true;
+        state.profileStatus = 'succeeded';
       })
       .addCase(fetchProfile.rejected, (state) => {
         state.user = null;
         state.token = null;
         state.isAuth = false;
+        state.profileStatus = 'failed';
       });
   },
 });

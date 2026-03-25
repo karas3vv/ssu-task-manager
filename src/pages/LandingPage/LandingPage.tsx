@@ -1,7 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { useAppSelector } from '../../app/hooks';
+import { routeStorage } from '../../utils/localStorage';
 import './LandingPage.css';
 
 export default function LandingPage() {
+  const isAuth = useAppSelector((state) => state.user.isAuth);
+
+  if (isAuth) {
+    return <Navigate to={routeStorage.getLastRoute() ?? '/dashboard'} replace />;
+  }
+
   return (
     <section className="landing">
       <div className="container">

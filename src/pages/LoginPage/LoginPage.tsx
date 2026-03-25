@@ -1,11 +1,18 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { useAppSelector } from '../../app/hooks';
 import AppButton from '../../ui/AppButton/AppButton';
 import AppInput from '../../ui/AppInput/AppInput';
 import './LoginPage.css';
 import { useLoginPage } from '../../hooks/useLoginPage';
+import { routeStorage } from '../../utils/localStorage';
 
 export default function LoginPage() {
+  const isAuth = useAppSelector((state) => state.user.isAuth);
   const props = useLoginPage();
+
+  if (isAuth) {
+    return <Navigate to={routeStorage.getLastRoute() ?? '/dashboard'} replace />;
+  }
 
   return (
     <div className="auth-page">

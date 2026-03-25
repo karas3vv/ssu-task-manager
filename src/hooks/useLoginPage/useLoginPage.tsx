@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../app/hooks';
 import { loginUser } from '../../store/user/userSlice';
+import { routeStorage } from '../../utils/localStorage';
 
 export function useLoginPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const fromState = (location.state as { from?: { pathname?: string; search?: string; hash?: string } } | null)?.from;
+  const from = fromState ? `${fromState.pathname ?? ''}${fromState.search ?? ''}${fromState.hash ?? ''}` : null;
 
   const [email, setEmail] = useState('student@example.com');
   const [password, setPassword] = useState('123456');
@@ -25,7 +29,7 @@ export function useLoginPage() {
     const resultAction = await dispatch(loginUser({ email, password }));
 
     if (loginUser.fulfilled.match(resultAction)) {
-      navigate('/dashboard');
+      navigate(from ?? routeStorage.getLastRoute() ?? '/dashboard', { replace: true });
     }
   };
   const TEXT_FILEDS = [
